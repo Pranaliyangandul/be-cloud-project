@@ -1,6 +1,8 @@
+from backend.credential_temp import Receiver
 from flask import Flask,render_template,request
 from flask import Flask, render_template
-
+from backend import code
+import datetime
 
 app = Flask(__name__)
 
@@ -16,9 +18,13 @@ def subscribe():
         lname = request.form.get("lastName")
         pincd = request.form.get("pincode")
         email = request.form.get("email")
-        age = request.form.get("age")
+        date = request.form.get("date")
+        date = date.split("-")
+        date = "-".join([date[2],date[1],date[0]])
 
-        print(fname,lname,email,age,pincd)
+        # print(fname,lname,email,pincd,date)
+        rcv = Receiver(fname,lname,email,pincd,date)
+        code.subcription(rcv)
 
     return render_template('subscribe.html')
 
