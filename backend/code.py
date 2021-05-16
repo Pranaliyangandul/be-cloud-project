@@ -18,6 +18,7 @@ def User_check(user):
         if op['sessions'] == []:
             pass
         else:
+            emailsend(user, op)
             dummySend(user, op)
             sys.exit()
 
